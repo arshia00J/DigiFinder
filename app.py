@@ -24,7 +24,7 @@ def read_words(file_path):
 def search_google(driver, query):
     search_url = f"https://www.google.com/search?q={query}"
     driver.get(search_url)
-    time.sleep(0.1)  # Reduced sleep time for faster performance
+    time.sleep(0.1)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     return soup
 
@@ -68,7 +68,7 @@ def contains_model_any_number(word):
 
 
 def main(input_file, output_file):
-    start_time = time.time()  # Record start time
+    start_time = time.time()
 
     words = read_words(input_file)
     results = []
@@ -103,7 +103,6 @@ def main(input_file, output_file):
                 results.append("")
                 print(f"Skipped: {word}")
 
-            # Wait for 0.1 seconds before the next search
             time.sleep(0.1)
 
     except Exception as e:
@@ -113,8 +112,8 @@ def main(input_file, output_file):
 
     save_results(results, output_file)
 
-    end_time = time.time()  # Record end time
-    elapsed_time = end_time - start_time  # Calculate elapsed time
+    end_time = time.time()
+    elapsed_time = end_time - start_time
 
     print(f"Results saved to {output_file}")
     print(f"{foundLink}/{totalLink} link(s) found")
@@ -123,6 +122,6 @@ def main(input_file, output_file):
 
 
 if __name__ == "__main__":
-    input_file = 'words.xlsx'  # Input Excel file
-    output_file = 'results.xlsx'  # Output Excel file
+    input_file = 'words.xlsx'
+    output_file = 'results.xlsx'
     main(input_file, output_file)
